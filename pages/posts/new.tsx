@@ -3,9 +3,6 @@ import { useRef } from "react";
 import { db } from "../index";
 import axios from 'axios';
 
-interface Ref {
-
-}
 
 export default function PostCreator() {
   const titleRef = useRef(null);
@@ -16,10 +13,8 @@ export default function PostCreator() {
     const title = titleRef!.current.value;
     const text = textareaRef.current.value;
     const id = Date.now().toString();
-    // const newPost = { title, text, id };
     try {
       const response = await axios.post(db + '.json', { title, text, id });
-      console.log(response.data);
     } catch (e) {
       console.log(e);
     }
