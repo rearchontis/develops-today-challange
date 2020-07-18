@@ -13,7 +13,7 @@ function Post({title, text, id}) {
       <style jsx>{`
         div {
           color: #242526;
-          min-width: 390px;
+          min-width: 300px;
           width: 50vw;
           padding: 1rem ;
           background: #efeffe;

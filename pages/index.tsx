@@ -16,13 +16,13 @@ export default function Index({ posts }) {
             color: #242526;
             background: #efeffe;
             padding: 1rem;
-            min-width: 390px;
+            min-width: 300px;
             width: 50vw;
             border-radius: 5px;
           }
             div {
             color: #242526;
-            min-width: 390px;
+            min-width: 300px;
             width: 50vw;
             padding: 1rem ;
             background: #efeffe;

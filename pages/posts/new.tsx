@@ -14,7 +14,7 @@ export default function PostCreator() {
     const text = textareaRef.current.value;
     const id = Date.now().toString();
     try {
-      const response = await axios.post(db + '.json', { title, text, id });
+      await axios.post(db + '.json', { title, text, id });
     } catch (e) {
       console.log(e);
     }
