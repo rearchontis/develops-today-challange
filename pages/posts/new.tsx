@@ -1,6 +1,6 @@
 import Layout from "../../components/layout";
 import { useRef } from "react";
-import { db } from "../index";
+import { BLOG_API } from "../index";
 import axios from "axios";
 import React from "react";
 
@@ -11,10 +11,10 @@ const PostCreator: React.FC = () => {
   const createPost = async (event) => {
     event.preventDefault();
     const title = titleRef?.current.value;
-    const text = textareaRef.current.value;
-    const id = Date.now().toString();
+    const body = textareaRef.current.value;
+    const id = Date.now();
     try {
-      await axios.post(db + ".json", { title, text, id });
+      await axios.post(BLOG_API, { title, body, id });
     } catch (e) {
       console.log(e);
     }
