@@ -1,33 +1,33 @@
-import { Layout } from "../../components/layout";
+import Layout from "../../components/layout";
 import { useRef } from "react";
 import { db } from "../index";
-import axios from 'axios';
+import axios from "axios";
+import React from "react";
 
-
-export default function PostCreator() {
+const PostCreator: React.FC = () => {
   const titleRef = useRef(null);
   const textareaRef = useRef(null);
 
-  const createPost = async event => {
+  const createPost = async (event) => {
     event.preventDefault();
-    const title = titleRef!.current.value;
+    const title = titleRef?.current.value;
     const text = textareaRef.current.value;
     const id = Date.now().toString();
     try {
-      await axios.post(db + '.json', { title, text, id });
+      await axios.post(db + ".json", { title, text, id });
     } catch (e) {
       console.log(e);
     }
-    titleRef.current.value = '';
-    textareaRef.current.value = '';
-  }
+    titleRef.current.value = "";
+    textareaRef.current.value = "";
+  };
 
   return (
     <Layout title="Create Post">
       <h1>Create Post</h1>
-      <form onSubmit={event => event.preventDefault()}>
+      <form onSubmit={(event) => event.preventDefault()}>
         <input placeholder="Post title" ref={titleRef} />
-        <textarea placeholder="Post text" ref={textareaRef}/>
+        <textarea placeholder="Post text" ref={textareaRef} />
         <button onClick={createPost}>Create Post</button>
       </form>
       <style jsx>{`
@@ -78,6 +78,7 @@ export default function PostCreator() {
         }
       `}</style>
     </Layout>
-  )
+  );
+};
 
-}
+export default PostCreator;

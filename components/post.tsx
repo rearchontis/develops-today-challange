@@ -1,21 +1,26 @@
 import Link from "next/link";
+import React from "react";
+import PropTypes from "prop-types";
+import { PostProps } from "./componentInterfaces";
 
-function Post({title, text, id}) {
+const Post: React.FC<PostProps> = ({ title, text, id }) => {
   return (
     <>
       <div>
         <h2>
           <Link href={`/posts/[id]`} as={`/posts/${id}`}>
             <a>Title: {title}</a>
-          </Link><span>{new Date(+id).toLocaleString()}</span></h2>
-        <p>{text || 'none'}</p>
+          </Link>
+          <span>{new Date(+id).toLocaleString()}</span>
+        </h2>
+        <p>{text || "none"}</p>
       </div>
       <style jsx>{`
         div {
           color: #242526;
           min-width: 300px;
           width: 50vw;
-          padding: 1rem ;
+          padding: 1rem;
           background: #efeffe;
           border-radius: 5px;
           margin-bottom: 10px;
@@ -44,7 +49,13 @@ function Post({title, text, id}) {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
+
+Post.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string,
+  id: PropTypes.string,
+};
 
 export default Post;

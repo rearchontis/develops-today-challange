@@ -1,28 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
+import React from "react";
+import PropTypes from "prop-types";
+import { LayoutProps } from "./componentInterfaces";
 
-export function Layout({children, title = 'Next App'}) {
+const Layout: React.FC<LayoutProps> = ({ children, title = "Next App" }) => {
   return (
     <>
       <Head>
         <title>{title} | DevelopsToday</title>
-        <meta name="keywords" content="next, nextjs, ssr, typescript, react"/>
+        <meta name="keywords" content="next, nextjs, ssr, typescript, react" />
         <meta
           name="description"
           content="this app is my challenge for DevelopsToday to show my skills in nextjs, typescript, redux, react and etc."
         />
       </Head>
       <nav>
-        <Link href={'/'}>
+        <Link href={"/"}>
           <a>Latest Posts</a>
         </Link>
-        <Link href={'/posts/new'}>
+        <Link href={"/posts/new"}>
           <a>Create new post</a>
         </Link>
       </nav>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <style jsx>{`
         nav {
           position: fixed;
@@ -60,5 +61,12 @@ export function Layout({children, title = 'Next App'}) {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
+
+Layout.propTypes = {
+  children: PropTypes.array,
+  title: PropTypes.string,
+};
+
+export default Layout;
