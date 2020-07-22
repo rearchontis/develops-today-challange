@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PostProps } from "./componentInterfaces";
 
-const Post: React.FC<PostProps> = ({ title, text, id }) => {
+const Post: React.FC<PostProps> = ({ title, body, id }) => {
   return (
     <>
       <div>
@@ -11,9 +11,9 @@ const Post: React.FC<PostProps> = ({ title, text, id }) => {
           <Link href={`/posts/[id]`} as={`/posts/${id}`}>
             <a>Title: {title}</a>
           </Link>
-          <span>{new Date(+id).toLocaleString()}</span>
+          <span>{id}</span>
         </h2>
-        <p>{text || "none"}</p>
+        <p>{body || "none"}</p>
       </div>
       <style jsx>{`
         div {
@@ -37,12 +37,15 @@ const Post: React.FC<PostProps> = ({ title, text, id }) => {
           padding: 5px;
           overflow: hidden;
           color: darkblue;
+          border-radius: 3px;
+          border: 1px solid transparent;
         }
         a:hover {
-          box-shadow: 0 0 5px darkblue, 0 0 10px darkblue;
+          border: 1px solid #242526;
         }
         p {
           font-size: 18px;
+          padding: 5px;
         }
         span {
           font-size: 12px;
@@ -54,8 +57,8 @@ const Post: React.FC<PostProps> = ({ title, text, id }) => {
 
 Post.propTypes = {
   title: PropTypes.string,
-  text: PropTypes.string,
-  id: PropTypes.string,
+  body: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default Post;

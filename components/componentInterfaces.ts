@@ -7,8 +7,8 @@ export interface LayoutProps {
 
 export interface PostProps {
   title: string;
-  text: string;
-  id: string;
+  body: string;
+  id?: number;
 }
 
 export interface PostsProps {

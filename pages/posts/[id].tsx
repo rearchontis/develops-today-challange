@@ -1,17 +1,23 @@
 import Layout from "../../components/layout";
 import { GetServerSideProps } from "next";
 import axios from "axios";
-import { db } from "../index";
+import { BLOG_API } from "../index";
 import React from "react";
+import PropTypes from "prop-types";
 import { PostProps } from "../../components/componentInterfaces";
 
-const PostById: React.FC<PostProps> = ({ ...post }) => {
-  const { title, text } = post;
+interface GetPostInterface {
+  className: string;
+  post: PostProps;
+}
+
+const PostById: React.FC<GetPostInterface> = ({ post }) => {
+  const { title, body } = post;
   return (
     <Layout>
       <h1>Title: {title}</h1>
       <div>
-        <p>{text || "none"}</p>
+        <p>{body || "none"}</p>
       </div>
       <style jsx>{`
         h1 {
@@ -40,22 +46,20 @@ const PostById: React.FC<PostProps> = ({ ...post }) => {
   );
 };
 
-// PostById.propTypes = {
-//   post: PropTypes.objectOf(PropTypes.string)
-// }
-
-// interface Post {
-//   id: string;
-//   text: string;
-//   date: string;
-// }
+PostById.propTypes = {
+  post: PropTypes.exact({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    id: PropTypes.number,
+  }),
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await axios.get(db + ".json");
+  const response = await axios.get(BLOG_API);
   const posts = Object.values(response.data);
   const index = posts
     .map((post: PostProps) => post.id)
-    .indexOf(context.query.id.toString());
+    .indexOf(+context.query.id);
   const post = posts[index];
   return {
     props: {

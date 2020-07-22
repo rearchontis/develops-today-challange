@@ -6,7 +6,7 @@ import React from "react";
 import { PostsProps } from "../components/componentInterfaces";
 import PropTypes from "prop-types";
 
-export const db = "https://nextjs-challenge.firebaseio.com/posts";
+export const BLOG_API = "https://simple-blog-api.crew.red/posts";
 
 const Index: React.FC<PostsProps> = ({ posts }) => {
   return (
@@ -43,8 +43,9 @@ Index.propTypes = {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await axios.get(db + ".json");
+  const response = await axios.get(BLOG_API);
   const posts = Object.values(response.data);
+  console.log(posts);
   return {
     props: {
       posts,

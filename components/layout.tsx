@@ -16,25 +16,35 @@ const Layout: React.FC<LayoutProps> = ({ children, title = "Next App" }) => {
         />
       </Head>
       <nav>
-        <Link href={"/"}>
-          <a>Latest Posts</a>
-        </Link>
-        <Link href={"/posts/new"}>
-          <a>Create new post</a>
-        </Link>
+        <div>
+          <Link href={"/"}>
+            <a>Latest Posts</a>
+          </Link>
+          <Link href={"/posts/new"}>
+            <a>Create new post</a>
+          </Link>
+        </div>
       </nav>
       <main>{children}</main>
       <style jsx>{`
         nav {
-          position: fixed;
           display: flex;
-          justify-content: space-around;
+          justify-content: center;
           align-items: center;
+          position: fixed;
           height: 60px;
           left: 0;
           right: 0;
           top: 0;
           background: #242526;
+        }
+        div {
+          min-width: 300px;
+          width: 50vw;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
         nav a {
           color: #ffffff;

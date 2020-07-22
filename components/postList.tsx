@@ -6,10 +6,12 @@ import { PostsProps } from "./componentInterfaces";
 const PostList: React.FC<PostsProps> = ({ posts }) => {
   return (
     <>
-      {posts.map((post, index) => {
-        const { title, text, id } = post;
-        return <Post key={index} title={title} text={text} id={id} />;
-      })}
+      {posts
+        .sort((a, b) => (a.id - b.id >= 0 ? -1 : 1))
+        .map((post, index) => {
+          const { title, body, id } = post;
+          return <Post key={index} title={title} body={body} id={+id} />;
+        })}
     </>
   );
 };
