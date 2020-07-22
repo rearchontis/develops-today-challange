@@ -41,7 +41,7 @@ const Post: React.FC<PostProps> = ({ title, body, id }) => {
           border: 1px solid transparent;
         }
         a:hover {
-          border: 1px solid #242526;;
+          border: 1px solid #242526;
         }
         p {
           font-size: 18px;

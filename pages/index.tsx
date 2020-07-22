@@ -6,7 +6,6 @@ import React from "react";
 import { PostsProps } from "../components/componentInterfaces";
 import PropTypes from "prop-types";
 
-// export const db = "https://nextjs-challenge.firebaseio.com/posts";
 export const BLOG_API = "https://simple-blog-api.crew.red/posts";
 
 const Index: React.FC<PostsProps> = ({ posts }) => {

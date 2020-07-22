@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 import { PostProps } from "../../components/componentInterfaces";
 
 interface GetPostInterface {
-  className: string,
-  post: PostProps,
+  className: string;
+  post: PostProps;
 }
 
 const PostById: React.FC<GetPostInterface> = ({ post }) => {
@@ -52,7 +52,7 @@ PostById.propTypes = {
     body: PropTypes.string,
     id: PropTypes.number,
   }),
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axios.get(BLOG_API);
